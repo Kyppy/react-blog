@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Post from './Post';
+import PostItemCard from './PostItemCard';
 
 class Home extends Component {
 
@@ -21,13 +21,18 @@ class Home extends Component {
     return (
       <div className="container">
         <h4 className="center">Home</h4>
-        { this.state.posts.map( post => 
-            <Post
-                title={ post.title }
-                body= { post.body }
-                key={ post.id }
-            />
-        )}
+        { this.state.posts.length ? (
+            this.state.posts.map( post => 
+                <PostItemCard
+                    title={ post.title }
+                    body= { post.body }
+                    key={ post.id }
+                    id={ post.id}
+                />
+            )
+         ) : (
+            <div className="center">No posts yet! Loading...</div>
+         )}
       </div>
     );
   }
