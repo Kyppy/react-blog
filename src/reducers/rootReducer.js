@@ -7,8 +7,18 @@ const initState = {
   ],
 };
 
-const rootReducer = (state = initState, action) => (
-  state
-);
+const rootReducer = (state = initState, action) => {
+  console.log(state);
+  if (action.type == 'DELETE_POST') {
+    const Posts = state.posts.filter(post => {
+      return action.id !== post.id;
+    })
+    return {
+      ...state,
+      posts: Posts,
+    };
+  }
+  return state;
+}
 
 export default rootReducer;

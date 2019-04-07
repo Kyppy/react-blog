@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const PostItemCard = props => (
+const PostItemCard = (props) => (
   <div className="post card" key={props.id}>
     <div className="card-content">
       <Link to={'/posts/' + props.id}>
