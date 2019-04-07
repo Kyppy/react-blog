@@ -1,28 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PostItemCard from './PostItemCard';
+import { connect } from 'react-redux';
 
-class Home extends Component {
-
-  state = {
-      posts: []
-  }
-  componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then(res => {
-        this.setState({
-            posts: res.data.slice(0, 10) 
-        })
-    });
-  };
-  
-  render() {
-    
+const Home = (props) => {
     return (
       <div className="container">
         <h4 className="center">Home</h4>
-        { this.state.posts.length ? (
-            this.state.posts.map( post => 
+        { props.posts.length ? (
+            props.posts.map( post => 
                 <PostItemCard
                     title={ post.title }
                     body= { post.body }
@@ -34,8 +19,13 @@ class Home extends Component {
             <div className="center">No posts yet! Loading...</div>
          )}
       </div>
-    );
-  }
+    )
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts
+  }
+}
+
+export default connect(mapStateToProps)(Home);
