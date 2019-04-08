@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open 'Google Chrome'",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "author": "Eric Ndung'u",
   "license": "UNLICENSED",
@@ -28,6 +29,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "express": "^4.16.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^6.0.1",
